@@ -1,4 +1,4 @@
-package Singleton;
+package Menu;
 
 public class Singleton {
     private static Singleton instance;

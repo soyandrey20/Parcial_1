@@ -1,4 +1,5 @@
 package Creacion;
 
-public class FactoryMethod {
+public interface CreadorJuguete {
+    Juguete Crear();
 }
