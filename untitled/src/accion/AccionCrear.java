@@ -2,6 +2,7 @@ package accion;
 
 
 import creacion.*;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,13 +19,13 @@ public class AccionCrear implements Accion {
         do {
             try {
                 opp = false;
-                System.out.println(" _________________ \n"  +
-                                   "| que desea crear |\n" +
-                                   "| 1. carrito      |\n" +
-                                   "| 2. peluche      |\n" +
-                                   "|_________________|\n");
+                System.out.println(" _________________ \n" +
+                        "| que desea crear |\n" +
+                        "| 1. carrito      |\n" +
+                        "| 2. peluche      |\n" +
+                        "|_________________|\n");
                 op = scanner.nextInt();
-                if(op >= 3 || op <=0){
+                if (op >= 3 || op <= 0) {
                     System.out.println("Opcion no valida");
                     opp = true;
                 }
@@ -39,12 +40,18 @@ public class AccionCrear implements Accion {
 
         if (op == 1) {
             creadorCarrito.Crear();
+            System.out.println("  __________________________ \n" +
+                    " | Juguete creado con exito | \n" +
+                    " |__________________________| \n");
+
         }
         if (op == 2) {
             creadorPeluche.Crear();
+            System.out.println("  __________________________  \n" +
+                    " | Juguete creado con exito | \n" +
+                    " |__________________________| \n");
 
         }
-
     }
 
     @Override

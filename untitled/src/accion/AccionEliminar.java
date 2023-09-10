@@ -17,21 +17,24 @@ public class AccionEliminar implements Accion {
         boolean op;
         do {
             try {
-                System.out.println("Id de el elemento a eliminar\n");
-                id = scanner.nextInt();
-                scanner.nextLine();
                 op = false;
-            }catch (InputMismatchException e){
+                System.out.println("Id de el elemento a eliminar");
+                id = scanner.nextInt();
+            } catch (InputMismatchException e) {
                 System.out.println("digite solo valores numericos");
                 op = true;
+                scanner.nextLine();
+
             }
-        }while (op);
+        } while (op);
 
 
-        if (id <= Main.getInstance().juguetes.size()) {
+        if (id < Main.getInstance().juguetes.size() && id >= 0) {
 
             Main.getInstance().juguetes.remove(id);
-
+            System.out.println(" ____________________  \n" +
+                               "|eliminacion exitosa | \n" +
+                               "|____________________| \n");
         } else {
 
             System.out.println("el juguete no esta en la lista");
