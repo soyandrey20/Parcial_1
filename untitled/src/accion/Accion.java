@@ -1,4 +1,4 @@
-package Menu;
+package accion;
 
 public interface Accion {
     void aplicar();
