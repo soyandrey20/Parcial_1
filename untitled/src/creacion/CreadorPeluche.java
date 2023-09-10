@@ -23,14 +23,14 @@ public class CreadorPeluche implements CreadorJuguete {
                 id = Main.getInstance().juguetes.size();
 
                 System.out.println("digite el material del peluche");
-                material = scanner.next();
+                material = scanner.nextLine();
 
                 System.out.println("digite el color del peluche");
-                color = scanner.next();
+                color = scanner.nextLine();
 
 
                 System.out.println("digite el relleno del peluche");
-                relleno = scanner.next();
+                relleno = scanner.nextLine();
 
 
             } catch (InputMismatchException e) {

@@ -20,14 +20,13 @@ public class CreadorCarrito implements CreadorJuguete {
                 id = Main.getInstance().juguetes.size();
 
                 System.out.println("ingrese el color del carrito");
-                String color = scanner.next();
+                color = scanner.nextLine();
 
-                System.out.println("ingrese el marca del carrito");
-                marca = scanner.next();
+                System.out.println("ingrese la marca del carrito");
+                marca = scanner.nextLine();
 
                 System.out.println("ingrese las puertas del carrito");
                 puertas = scanner.nextInt();
-                scanner.nextLine();
 
             } catch (InputMismatchException e) {
                 System.out.println(" solo el numero de puertas se escriben en numero ");

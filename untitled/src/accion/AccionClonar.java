@@ -4,6 +4,7 @@ import menu.Main;
 import creacion.Carrito;
 import creacion.Peluche;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AccionClonar implements Accion {
@@ -16,15 +17,17 @@ public class AccionClonar implements Accion {
         do {
             try {
                 op = false;
-                System.out.println("Id de el elemento a clonar\n");
+                System.out.println("Id de el elemento a clonar");
                 id = scanner.nextInt();
-                scanner.nextLine();
 
-                System.out.println("cuantos clones quiere\n");
+                System.out.println("cuantos clones quiere");
                 clones = scanner.nextInt();
-                scanner.nextLine();
 
-            } catch (NumberFormatException e) {
+                if (id >= Main.getInstance().juguetes.size() || id < 0) {
+                    System.out.println("objeto no disponible para clonacion");
+                    op = true;
+                }
+            } catch (InputMismatchException e) {
                 System.out.println("por favor digite solo valores numericos");
                 op = true;
                 scanner.nextLine();
@@ -38,6 +41,9 @@ public class AccionClonar implements Accion {
                 Peluche peluche1 = peluche.clone();
                 Main.getInstance().juguetes.add(peluche1);
             }
+            System.out.println("  ______________________________  \n" +
+                    " | Juguete clonado exitosamente | \n" +
+                    " |______________________________| \n");
 
         } else {
             Carrito carrito = (Carrito) Main.getInstance().juguetes.get(id);
@@ -45,6 +51,10 @@ public class AccionClonar implements Accion {
                 Carrito carrito1 = carrito.clone();
                 Main.getInstance().juguetes.add(carrito1);
             }
+            System.out.println("  ______________________________  \n" +
+                    " | Juguete clonado exitosamente | \n" +
+                    " |______________________________| \n");
+
         }
     }
 
