@@ -10,7 +10,7 @@ public class Main {
     private static Main instance;
     private static final Scanner scanner = new Scanner(System.in);
     private static final int OPCION_S = 5;
-    public List<Juguete> juguetes = new ArrayList<>();
+    public Set<Juguete> juguetes = new LinkedHashSet<>();
 
     private Main() {
 
@@ -25,7 +25,7 @@ public class Main {
 
     public void comenzar() {
         int option = 0;
-        boolean op;
+        boolean opcion;
         Map<Integer, Accion> strategy = AccionHandler.getStrategy();
 
         do {
@@ -33,28 +33,32 @@ public class Main {
 
 
                 try {
-                    op = false;
-                    System.out.println(" -------------------- \n" +
-                            "| Que desea realizar |\n" +
-                            "|   1. crear         |\n" +
-                            "|   2. clonar        |\n" +
-                            "|   3. eliminar      |\n" +
-                            "|   4. ver           |\n" +
-                            "|   5. salir         |\n" +
-                            "|____________________|");
+                    opcion = false;
+                    System.out.println(" --------------------- \n" +
+                            "| Que desea realizar  |\n" +
+                            "|   1. crear          |\n" +
+                            "|   2. clonar         |\n" +
+                            "|   3. eliminar       |\n" +
+                            "|   4. ver Todo       |\n" +
+                            "|   5. imprimir       |\n"+
+                            "|   6. filtrar        |\n" +
+                            "|   7. convertir      |\n" +
+                            "|   8. eliminar color |\n" +
+                            "|   9. salir          |\n" +
+                            "|_____________________|");
                     option = scanner.nextInt();
 
-                    if (juguetes.isEmpty() && option != 1 && option !=5 ) {
+                    if (juguetes.isEmpty() && option != 1 && option !=9 ) {
                         System.out.println("lista vacia, no se puede hacer esta operacion");
-                        op = true;
+                        opcion = true;
                     }
 
                 } catch (InputMismatchException e) {
-                    op = true;
+                    opcion = true;
                     System.out.println("Solo numeros validos ");
                     scanner.nextLine();
                 }
-            } while (op);
+            } while (opcion);
 
 
             Accion accion = strategy.get(option);

@@ -42,7 +42,7 @@ public class CreadorCarrito implements CreadorJuguete {
                 .marca(marca)
                 .Puertas(puertas)
                 .build();
-
+//sacar el de agregar
         Main.getInstance().juguetes.add(carrito);
         return new Carrito(id, color, marca, puertas);
     }
