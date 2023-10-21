@@ -12,7 +12,11 @@ public class AccionHandler {
             List.of(new AccionCrear(),
             new AccionClonar(),
             new AccionEliminar(),
-            new AccionVer());
+            new AccionVer(),
+            new AccionImprimir(),
+            new AccionConvertir(),
+            new AccionFiltrar(),
+            new AccionEliminarC());
 
     public  static Map<Integer,Accion> getStrategy(){
         Map<Integer,Accion> strategy = new HashMap<>();

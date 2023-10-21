@@ -50,6 +50,7 @@ public class CreadorPeluche implements CreadorJuguete {
 
 
         Main.getInstance().juguetes.add(peluche);
+
         return new Peluche(id, material, color, relleno);
 
     }

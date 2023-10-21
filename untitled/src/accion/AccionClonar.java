@@ -1,15 +1,17 @@
 package accion;
 
+import creacion.Juguete;
 import menu.Main;
 import creacion.Carrito;
 import creacion.Peluche;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class AccionClonar implements Accion {
     private static final Scanner scanner = new Scanner(System.in);
     private int clones, id;
+
+    private List<Juguete> juguetes = new ArrayList<>();
 
     @Override
     public void aplicar() {
@@ -35,8 +37,10 @@ public class AccionClonar implements Accion {
             }
         } while (op);
 
-        if (Main.getInstance().juguetes.get(id) instanceof Peluche) {
-            Peluche peluche = (Peluche) Main.getInstance().juguetes.get(id);
+        juguetes = new ArrayList<>(Main.getInstance().juguetes);
+
+        if (juguetes.get(id) instanceof Peluche) {
+            Peluche peluche = (Peluche) juguetes.get(id);
             for (int i = 0; i < clones; i++) {
                 Peluche peluche1 = peluche.clone();
                 Main.getInstance().juguetes.add(peluche1);
@@ -46,7 +50,7 @@ public class AccionClonar implements Accion {
                     " |______________________________| \n");
 
         } else {
-            Carrito carrito = (Carrito) Main.getInstance().juguetes.get(id);
+            Carrito carrito = (Carrito) juguetes.get(id);
             for (int i = 0; i < clones; i++) {
                 Carrito carrito1 = carrito.clone();
                 Main.getInstance().juguetes.add(carrito1);
@@ -56,6 +60,8 @@ public class AccionClonar implements Accion {
                     " |______________________________| \n");
 
         }
+
+        Main.getInstance().juguetes.addAll(Set.of((Juguete) juguetes));
     }
 
     @Override
