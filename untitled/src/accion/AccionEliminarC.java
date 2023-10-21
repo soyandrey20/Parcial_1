@@ -17,7 +17,7 @@ public class AccionEliminarC implements Accion {
 
 
         Main.getInstance().juguetes.stream()
-                .map(Collectors.toMap(juguete -> juguete.getColor(), )  )
+                .collect(juguete -> juguete.getColor()  )
                 .collect(Collectors.toSet())
                 .forEach(color -> System.out.println("id -> " + "color -> " + color ));
 
