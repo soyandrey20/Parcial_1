@@ -20,9 +20,11 @@ public class Carrito implements Juguete {
         this.id = id;
     }
 
-    public static CarritoBuilder builder() {
+    public static carritoBuilder builder() {
 
-        return new CarritoBuilder();
+
+
+        return new carritoBuilder();
     }
 
     @Override
@@ -35,36 +37,33 @@ public class Carrito implements Juguete {
         return color;
     }
 
-    public String getMatemar() {
-        return marca;
-    }
 
-    public int getRellenoPuer() {
+    public int getNumeroPuertas() {
         return numeroPuertas;
     }
 
-    public static class CarritoBuilder {
+    public static class carritoBuilder {
         private int id;
         private String color;
         private String marca;
         private int numeroPuertas;
 
-        public CarritoBuilder id(int id) {
+        public carritoBuilder id(int id) {
             this.id = id;
             return this;
         }
 
-        public CarritoBuilder color(String color) {
+        public carritoBuilder color(String color) {
             this.color = color;
             return this;
         }
 
-        public CarritoBuilder marca(String marca) {
+        public carritoBuilder marca(String marca) {
             this.marca = marca;
             return this;
         }
 
-        public CarritoBuilder Puertas(int numeroPuertas) {
+        public carritoBuilder Puertas(int numeroPuertas) {
             this.numeroPuertas = numeroPuertas;
             return this;
         }
@@ -80,7 +79,7 @@ public class Carrito implements Juguete {
     public String toString() {
 
         return String.format("%-5s | %-15s | %-15s | %-15s -> %-15s%n", "id", "color", "marca", "numero de puertas", "carrito") +
-                String.format("%-5d | %-15s | %-15s | %-15s%n", id, color, marca, numeroPuertas);
+                String.format("%-5d | %-15s | %-15s | %-15s%n", (id + 1), color, marca, numeroPuertas);
 
     }
 

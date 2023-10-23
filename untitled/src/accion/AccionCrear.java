@@ -2,51 +2,50 @@ package accion;
 
 
 import creacion.*;
-
+import menu.Main;
+import utils.Kb;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class AccionCrear implements Accion {
 
     private final CreadorCarrito creadorCarrito = new CreadorCarrito();
     private final CreadorPeluche creadorPeluche = new CreadorPeluche();
-    private static final Scanner scanner = new Scanner(System.in);
     private int op;
 
     @Override
     public void aplicar() {
-        boolean opp;
+        int validacion;
         do {
             try {
-                opp = false;
-                System.out.println(" _________________ \n" +
+                validacion = 0;
+                op = Kb.leerEntero(" _________________ \n" +
                         "| que desea crear |\n" +
                         "| 1. carrito      |\n" +
                         "| 2. peluche      |\n" +
                         "|_________________|\n");
-                op = scanner.nextInt();
                 if (op >= 3 || op <= 0) {
                     System.out.println("Opcion no valida");
-                    opp = true;
+                    validacion = 1;
                 }
 
             } catch (InputMismatchException e) {
                 System.out.println("solo digite numeros");
-                opp = true;
-                scanner.nextLine();
+                validacion = 1;
             }
-        } while (opp);
+        } while (validacion == 1);
 
 
         if (op == 1) {
-            creadorCarrito.Crear();
+            Carrito carrito = (Carrito) creadorCarrito.crear();
+            Main.getInstance().juguetes.add(carrito);
             System.out.println("  __________________________ \n" +
                     " | Juguete creado con exito | \n" +
                     " |__________________________| \n");
 
         }
         if (op == 2) {
-            creadorPeluche.Crear();
+            Peluche peluche = (Peluche) creadorPeluche.crear();
+            Main.getInstance().juguetes.add(peluche);
             System.out.println("  __________________________  \n" +
                     " | Juguete creado con exito | \n" +
                     " |__________________________| \n");

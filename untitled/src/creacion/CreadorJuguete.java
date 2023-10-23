@@ -1,5 +1,5 @@
 package creacion;
 
 public interface CreadorJuguete {
-    Juguete Crear();
+    Juguete crear();
 }

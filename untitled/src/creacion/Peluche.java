@@ -3,7 +3,7 @@ package creacion;
 import menu.Main;
 
 public class Peluche implements Juguete {
-    private String relleno;
+    private String  relleno;
     private String material;
     private String color;
 
@@ -21,6 +21,7 @@ public class Peluche implements Juguete {
     }
 
     public static PelucheBuilder builder() {
+
         return new PelucheBuilder();
     }
 
@@ -34,13 +35,6 @@ public class Peluche implements Juguete {
         return color;
     }
 
-    public String getMaterial() {
-        return material;
-    }
-
-    public String getRelleno() {
-        return relleno;
-    }
 
     public static class PelucheBuilder {
         private String relleno;
@@ -78,7 +72,7 @@ public class Peluche implements Juguete {
     @Override
     public String toString() {
         return String.format("%-5s | %-15s | %-15s | %-15s -> %-15s%n", "id", "color", "material", "relleno", "peluche") +
-                String.format("%-5d | %-15s | %-15s | %-15s%n" ,id, color, material, relleno);
+                String.format("%-5d | %-15s | %-15s | %-15s%n", (id+1), color, material, relleno);
 
     }
 

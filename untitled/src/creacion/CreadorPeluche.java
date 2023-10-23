@@ -1,55 +1,48 @@
 package creacion;
 
 import menu.Main;
+import utils.Kb;
 
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class CreadorPeluche implements CreadorJuguete {
-    private static final Scanner scanner = new Scanner(System.in);
 
     private int id;
     private String material, color, relleno;
 
     @Override
-    public Juguete Crear() {
-        boolean op;
+    public Juguete crear() {
+        int validacion;
         do {
             try {
-                op = false;
+                validacion = 0;
 
 
                 id = Main.getInstance().juguetes.size();
 
-                System.out.println("digite el material del peluche");
-                material = scanner.nextLine();
+                material = Kb.leerTexto("digite el material del peluche");
 
-                System.out.println("digite el color del peluche");
-                color = scanner.nextLine();
+                color = Kb.leerTexto("digite el color del peluche");
 
 
-                System.out.println("digite el relleno del peluche");
-                relleno = scanner.nextLine();
+                relleno = Kb.leerTexto("digite el relleno del peluche");
 
 
             } catch (InputMismatchException e) {
                 System.out.println(" solo el numero de puertas se escriben en numero ");
-                op = true;
-                scanner.nextLine();
+                validacion = 1;
+
             }
-        } while (op);
+        } while (validacion == 1);
 
 
-        Peluche peluche = Peluche.builder()
+        Peluche.builder()
                 .id(id)
                 .color(color)
                 .material(material)
                 .relleno(relleno)
                 .build();
-
-
-        Main.getInstance().juguetes.add(peluche);
 
         return new Peluche(id, material, color, relleno);
 

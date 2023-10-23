@@ -2,39 +2,40 @@ package accion;
 
 import creacion.Juguete;
 import menu.Main;
-import creacion.Carrito;
-import creacion.Peluche;
+import utils.ActualizarId;
+import utils.Impresion;
+import utils.Kb;
 
 import java.util.*;
 
 public class AccionEliminar implements Accion {
-    private static final Scanner scanner = new Scanner(System.in);
     private int id;
-
-    private List<Juguete> juguetes = new ArrayList<>();
 
 
     @Override
     public void aplicar() {
+        Impresion.impresion();
+        List<Juguete> juguetes = new ArrayList<>(Main.getInstance().juguetes);
 
-        boolean op;
+        int opcion;
         do {
             try {
-                op = false;
-                System.out.println("Id de el elemento a eliminar");
-                id = scanner.nextInt();
+                opcion = 0;
+                id = Kb.leerEntero("Id de el elemento a eliminar");
             } catch (InputMismatchException e) {
                 System.out.println("digite solo valores numericos");
-                op = true;
-                scanner.nextLine();
+                opcion = 1;
+
 
             }
-        } while (op);
+        } while (opcion == 1);
 
 
-        if (id < Main.getInstance().juguetes.size() && id >= 0) {
+        if (id <= Main.getInstance().juguetes.size() && id > 0) {
 
-            Main.getInstance().juguetes.remove(id);
+
+            Main.getInstance().juguetes.remove(juguetes.get(id-1));
+
             System.out.println(" ____________________  \n" +
                     "|eliminacion exitosa | \n" +
                     "|____________________| \n");
@@ -43,31 +44,7 @@ public class AccionEliminar implements Accion {
             System.out.println("el juguete no esta en la lista");
 
         }
-
-        //comverir a list y luego a set
-
-        for (int i = 0; i < Main.getInstance().juguetes.size(); i++) {
-
-
-            juguetes = new ArrayList<>(Main.getInstance().juguetes);
-
-
-            if (juguetes.get(i) instanceof Peluche) {
-
-                Peluche peluche = (Peluche) juguetes.get(i);
-                peluche.setId(i);
-
-
-            } else {
-
-                Carrito carrito = (Carrito) juguetes.get(i);
-                carrito.setId(i);
-
-
-            }
-
-        }
-        Main.getInstance().juguetes.addAll(Set.of((Juguete) juguetes));
+        ActualizarId.actualizarNormal();
     }
 
     @Override

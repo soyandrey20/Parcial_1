@@ -4,43 +4,42 @@ import creacion.Juguete;
 import menu.Main;
 import creacion.Carrito;
 import creacion.Peluche;
+import utils.ActualizarId;
+import utils.Impresion;
+import utils.Kb;
 
 import java.util.*;
 
 public class AccionClonar implements Accion {
-    private static final Scanner scanner = new Scanner(System.in);
     private int clones, id;
-
-    private List<Juguete> juguetes = new ArrayList<>();
 
     @Override
     public void aplicar() {
-        boolean op;
+        int validacion;
+        Impresion.impresion();
         do {
             try {
-                op = false;
-                System.out.println("Id de el elemento a clonar");
-                id = scanner.nextInt();
+                validacion = 0;
 
-                System.out.println("cuantos clones quiere");
-                clones = scanner.nextInt();
+                id = Kb.leerEntero("Id de el elemento a clonar");
 
-                if (id >= Main.getInstance().juguetes.size() || id < 0) {
+                clones = Kb.leerEntero("cuantos clones quiere");
+
+                if (id > Main.getInstance().juguetes.size() || id <= 0) {
                     System.out.println("objeto no disponible para clonacion");
-                    op = true;
+                    validacion = 1;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("por favor digite solo valores numericos");
-                op = true;
-                scanner.nextLine();
+                validacion = 1;
 
             }
-        } while (op);
+        } while (validacion == 1);
 
-        juguetes = new ArrayList<>(Main.getInstance().juguetes);
+        List<Juguete> juguetes = new ArrayList<>(Main.getInstance().juguetes);
 
-        if (juguetes.get(id) instanceof Peluche) {
-            Peluche peluche = (Peluche) juguetes.get(id);
+        if (juguetes.get(id - 1) instanceof Peluche) {
+            Peluche peluche = (Peluche) juguetes.get(id - 1);
             for (int i = 0; i < clones; i++) {
                 Peluche peluche1 = peluche.clone();
                 Main.getInstance().juguetes.add(peluche1);
@@ -50,7 +49,7 @@ public class AccionClonar implements Accion {
                     " |______________________________| \n");
 
         } else {
-            Carrito carrito = (Carrito) juguetes.get(id);
+            Carrito carrito = (Carrito) juguetes.get(id - 1);
             for (int i = 0; i < clones; i++) {
                 Carrito carrito1 = carrito.clone();
                 Main.getInstance().juguetes.add(carrito1);
@@ -61,7 +60,7 @@ public class AccionClonar implements Accion {
 
         }
 
-        Main.getInstance().juguetes.addAll(Set.of((Juguete) juguetes));
+        ActualizarId.actualizarNormal();
     }
 
     @Override
