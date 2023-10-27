@@ -2,21 +2,20 @@ package accion;
 
 import creacion.Juguete;
 import menu.Main;
-import creacion.Carrito;
-import creacion.Peluche;
 import utils.ActualizarId;
 import utils.Impresion;
 import utils.Kb;
-
 import java.util.*;
 
 public class AccionClonar implements Accion {
     private int clones, id;
+    private final List<Juguete> juguetes = new ArrayList<>(Main.getInstance().juguetes);
 
     @Override
     public void aplicar() {
         int validacion;
         Impresion.impresion();
+
         do {
             try {
                 validacion = 0;
@@ -36,29 +35,16 @@ public class AccionClonar implements Accion {
             }
         } while (validacion == 1);
 
-        List<Juguete> juguetes = new ArrayList<>(Main.getInstance().juguetes);
+        Juguete jugueteClonar = juguetes.get(id - 1);
 
-        if (juguetes.get(id - 1) instanceof Peluche) {
-            Peluche peluche = (Peluche) juguetes.get(id - 1);
-            for (int i = 0; i < clones; i++) {
-                Peluche peluche1 = peluche.clone();
-                Main.getInstance().juguetes.add(peluche1);
-            }
-            System.out.println("  ______________________________  \n" +
-                    " | Juguete clonado exitosamente | \n" +
-                    " |______________________________| \n");
-
-        } else {
-            Carrito carrito = (Carrito) juguetes.get(id - 1);
-            for (int i = 0; i < clones; i++) {
-                Carrito carrito1 = carrito.clone();
-                Main.getInstance().juguetes.add(carrito1);
-            }
-            System.out.println("  ______________________________  \n" +
-                    " | Juguete clonado exitosamente | \n" +
-                    " |______________________________| \n");
-
+        for (int i = 0; i < clones; i++) {
+            Juguete jugueteClonar1 = jugueteClonar.clone();
+            Main.getInstance().juguetes.add(jugueteClonar1);
         }
+        System.out.println("  ______________________________  \n" +
+                " | Juguete clonado exitosamente | \n" +
+                " |______________________________| \n");
+
 
         ActualizarId.actualizarNormal();
     }

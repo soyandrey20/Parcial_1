@@ -49,7 +49,9 @@ public class Main {
                             "|_____________________|");
 
                     if (juguetes.isEmpty() && option != 1 && option != 9) {
-                        System.out.println("lista vacia, no se puede hacer esta operacion");
+                        System.out.println(" -----------------------------------------------\n" +
+                                "           | lista vacia, no se puede hacer esta operacion |\n" +
+                                           "|_______________________________________________|\n");
                         Validacion = 1;
                     }
 

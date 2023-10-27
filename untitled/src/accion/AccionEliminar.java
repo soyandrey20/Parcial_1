@@ -10,12 +10,12 @@ import java.util.*;
 
 public class AccionEliminar implements Accion {
     private int id;
+    private final List<Juguete> juguetes = new ArrayList<>(Main.getInstance().juguetes);
 
 
     @Override
     public void aplicar() {
         Impresion.impresion();
-        List<Juguete> juguetes = new ArrayList<>(Main.getInstance().juguetes);
 
         int opcion;
         do {

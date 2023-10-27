@@ -18,7 +18,6 @@ public class AccionEliminarC implements Accion {
 
         String colorEliminar;
 
-
         Map<Integer, String> colorMapa = Main.getInstance().juguetes.stream()
                 .collect(Collectors.toMap(Juguete::getId, Juguete::getColor));
 
